@@ -56,7 +56,7 @@ int pin(char(*args)[100])
 		scanf("%[^\n]%*c", command);
 	}
 	clear_space(command, token);
-	return Separate(token, args, &c);
+	return Separate(token, args, c);
 }
 
 int strtonum(char* str)
@@ -83,7 +83,7 @@ int back_path(char *str1)
 {
 	const char c[2] = "/";
 	char token[100][100];
-	int m = Separate(str1, token, &c);
+	int m = Separate(str1, token, c);
 	char npath[PATH_MAX_SIZE];
 	char mpath[PATH_MAX_SIZE];
 	if (m < 1)
@@ -180,7 +180,7 @@ int main()
 			{
 				const char c[2] = "/";
 				char token[100][100];
-				int m = Separate(args[1], token, &c);
+				int m = Separate(args[1], token, c);
 				char npath[PATH_MAX_SIZE];
 				strcpy(npath, getPath());
 				char mpath[PATH_MAX_SIZE] = "";
