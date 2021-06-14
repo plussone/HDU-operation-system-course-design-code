@@ -9,7 +9,6 @@
 //struct dirTable* currentDirTable;  //当前位置
 char path[FILENAME_MAX_SIZE * 10];             //保存当前绝对路径
 char nowusername[USERNAME_MAX_SIZE] = "gjy135136";
-int filenum = 10;
 
 void ls()
 {
