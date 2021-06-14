@@ -9,7 +9,7 @@
 //struct dirTable* currentDirTable;  //当前位置
 char path[FILENAME_MAX_SIZE * 10];             //保存当前绝对路径
 char nowusername[USERNAME_MAX_SIZE] = "gjy135136";
-int filenum = 0;
+int filenum = 10;
 
 void ls()
 {
@@ -100,14 +100,11 @@ int creatDir(char* str)
 	phdinode->number++;
 	pt->next = phdinode->next;
 	phdinode->next = pt;
-
-	struct dir *tempdir = (struct dir*)malloc(sizeof(struct dir) * filenum);
-	tempdir[0].num = 0;
-
+	
 	struct inode* pinode = get_inodearray(pt->number);
 	pinode->blocknum[0] = get_freenum_blocks();
-	char* blockp = get_block(pinode->blocknum[0]);
-	memcpy(blockp, tempdir,sizeof(struct dir) * filenum);
+	struct dir* blockp = get_block(pinode->blocknum[0]);
+	blockp[0].num = 0;
 	pinode->mode = 0666;
 	strcpy(pinode->type, "filefolder");
 	strcpy(pinode->username, nowusername);
@@ -141,13 +138,7 @@ int init()
 		printf("打开印象文件失败");
 		return -1;
 	}
-
-	struct dir* pdir = (struct dir*)malloc(sizeof(struct dir) * filenum);
-	char* str = get_block(1);
-	//memcpy(pdir, str, sizeof(struct dir) * filenum);
-	pdir[0].num = 0;
-	memcpy(str, pdir, sizeof(struct dir) * filenum);
-
+	
 	char* strc = get_blockarray(1);
 	*strc = 1;
 
