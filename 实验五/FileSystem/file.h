@@ -5,7 +5,6 @@
 #define NUM 30
 #define FILE_SIZE 256
 #define USERNAME_MAX_SIZE 16
-#define FILENUM 50
 
 typedef struct dir
 {
